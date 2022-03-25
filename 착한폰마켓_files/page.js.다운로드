@@ -1,0 +1,15 @@
+/**
+ * ajax 페이징 처리, 페이지 새로고침시 해당페이지 찾아가게끔
+ */
+$(function(){
+  $(document).on('click', '.page ul li a', function(event){
+    event.preventDefault();
+    if ($(this).text() != '') window.location.hash = $(this).text();
+  })
+
+  if (window.location.hash) page_list(window.location.hash.replace('#', ''));
+
+  $(window).on('hashchange', function() {
+    page_list(window.location.hash.replace('#', ''));
+  });
+})
